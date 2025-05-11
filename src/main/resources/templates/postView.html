@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>자유게시판</title>
+    <title>게시판</title>
     <style>
         body { font-family: sans-serif; padding: 20px; }
         h1 { color: #333; }
@@ -14,7 +14,7 @@
     </style>
 </head>
 <body>
-<h1>자유게시판</h1>
+<h1>게시판</h1>
 <div th:each="group : ${articles}" class="board">
     <h2 th:text="${group.boardName}"></h2>
     <div th:each="article : ${group.articleResponseDtos}" class="article">
