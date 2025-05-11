@@ -7,12 +7,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Repository
 public class ArticleRepository {
     private final List<Article> articles = new ArrayList<>();
-    private final AtomicLong idCounter = new AtomicLong();
 
     public List<Article> findAll() {
         return articles;
@@ -23,7 +21,6 @@ public class ArticleRepository {
     }
 
     public Article save(Article article) {
-        article.setId(idCounter.getAndIncrement());
         article.setCreatedDate(LocalDateTime.now());
         article.setModifiedDate(LocalDateTime.now());
         articles.add(article);
