@@ -1,4 +1,4 @@
-package com.example.hellospring.entity;
+package com.example.hellospring.domain;
 
 import java.time.LocalDateTime;
 
