@@ -27,7 +27,7 @@ public class ArticleService {
         this.memberRepository = memberRepository;
     }
 
-    public List<ArticleListResponseDto> getAll() {
+    public List<ArticleListResponseDto> getAllArticles() {
         Map<Long, List<Article>> grouped = articleRepository.findAll().stream()
                 .collect(Collectors.groupingBy(Article::getBoardId));
 
@@ -45,13 +45,13 @@ public class ArticleService {
                 .collect(Collectors.toList());
     }
 
-    public ArticleResponseDto getById(Long id) {
+    public ArticleResponseDto getArticleById(Long id) {
         return articleRepository.findById(id)
                 .map(ArticleResponseDto::new)
                 .orElseThrow(() -> new NullPointerException(""));
     }
 
-    public ArticleResponseDto create(ArticleRequestDto dto) {
+    public ArticleResponseDto createArticle(ArticleRequestDto dto) {
         if (!memberRepository.findById(dto.getWriterId()).isPresent()) {
             throw new IllegalArgumentException("해당 작성자를 찾을 수 없습니다.");
         }
@@ -73,7 +73,7 @@ public class ArticleService {
         return new ArticleResponseDto(article);
     }
 
-    public ArticleResponseDto update(Long id, ArticleRequestDto dto) {
+    public ArticleResponseDto updateArticle(Long id, ArticleRequestDto dto) {
         Article article = articleRepository.findById(id)
                 .orElseThrow(() -> new NullPointerException(""));
 
@@ -84,7 +84,7 @@ public class ArticleService {
         return new ArticleResponseDto(article);
     }
 
-    public void delete(Long id) {
+    public void deleteArticle(Long id) {
         if (!articleRepository.deleteById(id)) {
             throw new NullPointerException("");
         }
